@@ -68,11 +68,11 @@ public function friends(){
     }
     $arr = rtrim($content, "\r\n");
     echo print_r(   $arr );
-    echo '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/n';
+  
 
     $dataArr = explode("\n", $arr);
     echo print_r($dataArr   );
-    echo '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/n';
+  
     $friends = [];
     foreach($dataArr as $friend){
         $newData = explode(",", $friend);
@@ -100,5 +100,72 @@ public function friends(){
   
       header('Content-Type: application/json');
       echo json_encode($friends);
+}
+public function mySkills(){
+    $filePath = 'F:/phpnew/storage/mySkills.csv';
+
+    // open the file
+    $file = fopen($filePath, 'r+');
+
+    if( filesize($filePath)){
+        $content = fread($file, filesize($filePath));
+
+    }else{
+        $content = null;
+
+    }
+    $arr = rtrim($content, "\r\n");
+    fclose($file);
+
+    $dataArr = explode("\r\n", $arr);
+  
+    $skills = [];
+    foreach($dataArr as $friend){
+        $newData = explode(",", $friend);
+     $skills[$newData[0]] = $newData[1];
+
+    }
+   
+
+    extract(['archive' =>$skills]);
+
+      require_once '../views/mySkills.php';
+}
+
+
+public function myProfile(){
+    $filePath = 'F:/phpnew/storage/myProfile.csv';
+
+    // open the file
+    $file = fopen($filePath, 'r+');
+
+    if( filesize($filePath)){
+        $content = fread($file, filesize($filePath));
+
+    }else{
+        $content = null;
+
+    }
+    $arr = rtrim($content, "\r\n");
+    fclose($file);
+
+    $dataArr = explode("\r\n", $arr);
+   
+  
+   
+    foreach($dataArr as $friend){
+        $newData = explode(",", $friend);
+        
+    }
+   
+
+    extract(['profile' =>$newData]);
+
+      require_once '../views/myProfile.php';
+}
+public function home() {
+require_once '../views/myHome.php';
+
+
 }
 }

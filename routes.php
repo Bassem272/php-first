@@ -3,8 +3,24 @@ require_once '../utils/Router.php';
 require_once '../controllers/controllers.php';
 
 $controller = new Controllers();
-Router::get('/', function () use ($controller) { // Fixed the variable name
-    return $controller->index(); // Use $controller, not $controllers
+Router :: get('/home', function () use ($controller){
+    
+    return $controller->home();
+
+});
+Router :: get('/mySkills', function () use ($controller){
+    
+    return $controller->mySkills();
+
+});
+Router :: get('/myProfile', function () use ($controller){
+    
+    return $controller->myProfile();
+
+});
+
+Router::get('/', function () use ($controller) { 
+    return $controller->index(); 
 });
 Router::get('/about', function () {
     echo "This is the about page.";
@@ -24,6 +40,8 @@ Router :: get('/friends', function () use ($controller){
     return $controller->friends();
 
 });
+
+
 
 
 
