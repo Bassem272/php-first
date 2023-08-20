@@ -1,4 +1,4 @@
-Researh
+####Research
 Variable Case Sensitivity:
 In PHP, variable names are case-sensitive, meaning that the same variable name with different capitalization can be treated as separate variables. For example:
 ```php
